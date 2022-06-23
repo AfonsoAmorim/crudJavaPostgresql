@@ -54,6 +54,22 @@ public class UserPosDAO {
 		
 	}
 	
+	public void atualizar(UserposjavaModel userposjava) throws SQLException {
+		try {
+			String sql = "UPDATE userposjava SET nome = ? where id = " + userposjava.getId();
+			
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.setString(1, userposjava.getNome());
+			
+			statement.execute();
+			connection.commit();
+			
+		} catch (Exception e) {
+			connection.rollback();
+			e.printStackTrace();
+		}
+	}
+	
 	
 
 }
